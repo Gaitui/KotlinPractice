@@ -1,0 +1,22 @@
+import javax.print.attribute.standard.MediaSize
+
+enum class Direction(private val coordinate: Coordinate){
+    NORTH(Coordinate(0,-1)),
+    EAST(Coordinate(1,0)),
+    SOUTH(Coordinate(0,1)),
+    WEST(Coordinate(-1,0));
+
+    /*---15_15
+    fun updateCoordinate(playerCoordinate : Coordinate) =
+            Coordinate(playerCoordinate.x + coordinate.x,
+                    playerCoordinate.y + coordinate.y)
+     */
+    fun updateCoordinate(playerCoordinate : Coordinate) =
+            coordinate + playerCoordinate
+
+}
+data class Coordinate(val x: Int, val y: Int){
+    val isInBonds = x>=0 && y>=0
+
+    operator fun plus(other: Coordinate) = Coordinate(x+other.x,y+other.y)
+}
